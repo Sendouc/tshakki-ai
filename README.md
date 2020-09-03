@@ -8,8 +8,8 @@ Tavoitteena on tehdä React/TypeScript -ohjelma, jolla pystyy pelaamaan shakkia 
 
 ## Dokumentit
 
-[Määrittely](www.google.fi)
+[Määrittely](https://github.com/Sendouc/tshakki-ai/blob/master/dokumentaatio/m%C3%A4%C3%A4rittely.md)
 
 ## Viikkoraportit
 
-[Viikko 1](www.google.fi)
+[Viikko 1](https://github.com/Sendouc/tshakki-ai/blob/master/dokumentaatio/viikkoraportti_1.md)

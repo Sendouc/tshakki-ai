@@ -8,7 +8,7 @@ Tavoitteena on tehdä React/TypeScript -ohjelma, jolla pystyy pelaamaan shakkia 
 
 ## Algoritmi
 
-Kaikki tekoälyyn ja algoritmeihin liittyvä koodi on kansiossa logiikka.
+Kaikki tekoälyyn ja algoritmeihin liittyvä koodi on kansiossa [logiikka](https://github.com/Sendouc/tshakki-ai/tree/master/src/logiikka).
 
 ## Dokumentit
 
@@ -16,7 +16,7 @@ Kaikki tekoälyyn ja algoritmeihin liittyvä koodi on kansiossa logiikka.
 
 ## Viikkoraportit
 
-[Viikko 1](https://github.com/Sendouc/tshakki-ai/blob/master/dokumentaatio/viikkoraportti_1.md)
+[Viikko 1](https://github.com/Sendouc/tshakki-ai/blob/master/dokumentaatio/viikkoraportti_1.md)  
 [Viikko 2](https://github.com/Sendouc/tshakki-ai/blob/master/dokumentaatio/viikkoraportti_2.md)
 
 ## Yksikkötestaus

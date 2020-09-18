@@ -18,6 +18,7 @@ Kaikki tekoälyyn ja algoritmeihin liittyvä koodi on kansiossa [logiikka](https
 
 [Viikko 1](https://github.com/Sendouc/tshakki-ai/blob/master/dokumentaatio/viikkoraportti_1.md)  
 [Viikko 2](https://github.com/Sendouc/tshakki-ai/blob/master/dokumentaatio/viikkoraportti_2.md)
+[Viikko 3](https://github.com/Sendouc/tshakki-ai/blob/master/dokumentaatio/viikkoraportti_3.md)
 
 ## Yksikkötestaus
 

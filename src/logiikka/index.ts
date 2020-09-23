@@ -1,4 +1,5 @@
 import { Lauta, Nappula, NappulanTyyppi, Puoli } from "../tyypit";
+import { kopioi2dTaulukko } from "./työkalut";
 
 const nappuloidenArvot: { [key in NappulanTyyppi]: number } = {
   SOTILAS: 1,
@@ -79,7 +80,7 @@ const haeNappulanParasMahdollinenSiirto = (
 
       if (parhaanSiirronArvo < arvo) {
         parhaanSiirronArvo = arvo;
-        uusiLauta = [...lauta];
+        uusiLauta = kopioi2dTaulukko(lauta);
         uusiLauta[nappulaI][nappulaJ] = null;
         uusiLauta[nappulaI][nappulaJ + 1] = nappula;
       }
@@ -111,7 +112,7 @@ const haeNappulanParasMahdollinenSiirto = (
 
       if (parhaanSiirronArvo < arvo) {
         parhaanSiirronArvo = arvo;
-        uusiLauta = [...lauta];
+        uusiLauta = kopioi2dTaulukko(lauta);
         uusiLauta[nappulaI][nappulaJ] = null;
         uusiLauta[uusiI][uusiJ] = nappula;
       }
@@ -124,7 +125,7 @@ const haeNappulanParasMahdollinenSiirto = (
       throw new Error("Väärä nappulan tyyppi");
   }
 
-  if (!uusiLauta) uusiLauta = lauta;
+  if (!uusiLauta) uusiLauta = kopioi2dTaulukko(lauta);
   return [parhaanSiirronArvo, uusiLauta];
 };
 
@@ -150,9 +151,9 @@ const haeLaudanParasMahdollinenSiirto = (
     }
   }
 
-  if (!lauta) throw Error("Ei lautaa mitä palauttaa");
+  if (!uusiLauta) throw Error("Ei lautaa mitä palauttaa");
 
-  return uusiLauta!; //@TODO
+  return uusiLauta;
 };
 
 /**

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Chess from "react-chess";
 import { haeLautaTekoälynSiirronJälkeen } from "./logiikka";
 import { Lauta, Nappula, NappulanTyyppi } from "./tyypit";
@@ -75,10 +75,17 @@ const Appi = () => {
     "p@h7",
     "r@h8",
   ]);
-  const [valkoisenVuoro, setValkoisenVuoro] = useState(true);
 
-  useEffect(() => {
-    if (valkoisenVuoro) return;
+  const onNappulanLiikutus = (_: any, ruudusta: string, ruutuun: string) => {
+    const lautaSiirronJälkeen = [...lauta]
+      // poistetaan mahdollisesti syöty nappula
+      .filter((nappulaRuudussa) => nappulaRuudussa.split("@")[1] !== ruutuun)
+      // siirretään nappulaa
+      .map((nappulaRuudussa) => {
+        return nappulaRuudussa.split("@")[1] === ruudusta
+          ? `${nappulaRuudussa.split("@")[0]}@${ruutuun}`
+          : nappulaRuudussa;
+      });
 
     const lautaNyt: Lauta = [
       [null, null, null, null, null, null, null, null],
@@ -91,7 +98,7 @@ const Appi = () => {
       [null, null, null, null, null, null, null, null],
     ];
 
-    for (const nappulaInfo of lauta) {
+    for (const nappulaInfo of lautaSiirronJälkeen) {
       const nappula: Nappula = {
         väri: nappulaInfo === nappulaInfo.toLowerCase() ? "MUSTA" : "VALKOINEN",
         tyyppi: nappulaKoodiNimeksi[nappulaInfo.charAt(0)],
@@ -123,19 +130,6 @@ const Appi = () => {
     }
 
     setLauta(uusiLauta);
-    setValkoisenVuoro(true);
-  }, [valkoisenVuoro]);
-
-  const onNappulanLiikutus = (_: any, ruudusta: string, ruutuun: string) => {
-    const uusiLauta = [...lauta];
-    setLauta(
-      uusiLauta.map((nappulaRuudussa) =>
-        nappulaRuudussa.split("@")[1] === ruudusta
-          ? `${nappulaRuudussa.split("@")[0]}@${ruutuun}`
-          : nappulaRuudussa
-      )
-    );
-    setValkoisenVuoro(false);
   };
 
   return (
@@ -152,7 +146,6 @@ const Appi = () => {
           piece.notation.split("@")[0] ===
           piece.notation.split("@")[0].toUpperCase()
         }
-        allowMoves={valkoisenVuoro}
       />
     </div>
   );

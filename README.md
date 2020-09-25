@@ -19,8 +19,9 @@ Kaikki tekoälyyn ja algoritmeihin liittyvä koodi on kansiossa [logiikka](https
 ## Viikkoraportit
 
 [Viikko 1](https://github.com/Sendouc/tshakki-ai/blob/master/dokumentaatio/viikkoraportti_1.md)  
-[Viikko 2](https://github.com/Sendouc/tshakki-ai/blob/master/dokumentaatio/viikkoraportti_2.md)
-[Viikko 3](https://github.com/Sendouc/tshakki-ai/blob/master/dokumentaatio/viikkoraportti_3.md)
+[Viikko 2](https://github.com/Sendouc/tshakki-ai/blob/master/dokumentaatio/viikkoraportti_2.md)  
+[Viikko 3](https://github.com/Sendouc/tshakki-ai/blob/master/dokumentaatio/viikkoraportti_3.md)  
+[Viikko 4](https://github.com/Sendouc/tshakki-ai/blob/master/dokumentaatio/viikkoraportti_4.md)
 
 ## Yksikkötestaus
 
@@ -29,3 +30,9 @@ Koodi on testattu Jest-kirjastolla. Viikottaiset testikattavuusraportit löytyv�
 ## Koodin laatu
 
 Create React App työkalun mukana tulee valmiiksi konfiguroituna [ESLint](https://github.com/facebook/create-react-app#philosophy). Lisäksi minulla on [Prettier](https://prettier.io/) käytössä lokaalisti. Prettier formatoi tiedoston aina kun se tallennetaan.
+
+## Projektin ajaminen
+
+1. Varmista että Node on asennettu
+2. `npm install`
+3. `npm start`

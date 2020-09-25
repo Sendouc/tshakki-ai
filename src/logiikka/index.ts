@@ -10,23 +10,48 @@ const nappuloidenArvot: { [key in NappulanTyyppi]: number } = {
   KUNINGAS: Infinity,
 };
 
-const siirronArvo = (
+const arvioiLaudanTilanne = (lauta: Lauta) => {
+  let tilanne = 0;
+  for (let i = 0; i < 8; i++) {
+    for (let j = 0; j < 8; j++) {
+      const nappula = lauta[i][j];
+      if (!nappula) continue;
+
+      if (nappula.väri === "MUSTA") {
+        tilanne += nappuloidenArvot[nappula.tyyppi];
+      } else {
+        tilanne -= nappuloidenArvot[nappula.tyyppi];
+      }
+    }
+  }
+
+  return tilanne;
+};
+
+const voikoSiirtää = (
   lauta: Lauta,
   väri: Puoli,
   i: number,
   j: number,
   vainSyönti: boolean = false
 ) => {
-  if (i < 0 || j < 0 || i > 7 || j > 7) return -Infinity;
-  const nappula = lauta[i][j];
-  if (!vainSyönti && !nappula) return 0;
-  if (!nappula || nappula.väri === väri) return -Infinity;
+  // ei voida siirtää laudan ulkopuoelle
+  if (i < 0 || j < 0 || i > 7 || j > 7) return false;
 
-  return nappuloidenArvot[nappula.tyyppi];
+  const nappula = lauta[i][j];
+
+  // ei voida syödä omaa nappulaa
+  if (nappula?.väri === väri) return false;
+
+  // sotilas voi liikkua tiettyihin ruutuihin vain syödessä
+  const vastustajanVäri = väri === "MUSTA" ? "VALKOINEN" : "MUSTA";
+  if (vainSyönti && nappula?.väri !== vastustajanVäri) return false;
+
+  return true;
 };
 
 /**
- * Palauttaa parhaan mahdollisen siirron nappulalle.
+ * Simuloi nappulat siirrot kutsuen minimax-funktiota.
  *
  * @param lauta Laudan tila tällä hetkellä
  * @param nappula Nappula jota ollaan siirtämässä
@@ -34,55 +59,42 @@ const siirronArvo = (
  * @param nappulaJ Nappulan "j" indeksi laudalla
  * @returns Parhaan mahdollisen siirron arvon ja uuden laudan tilan
  */
-const haeNappulanParasMahdollinenSiirto = (
+const haeMahdollisetSiirrot = (
   lauta: Lauta,
   nappula: Nappula,
   nappulaI: number,
   nappulaJ: number
-): [number, Lauta] => {
-  let parhaanSiirronArvo = -Infinity;
-  let uusiLauta: Lauta | null = null;
-  let uusiI = -1;
-  let uusiJ = -1;
-
-  let uusiArvo = 0;
-  let arvo = -Infinity;
-
+) => {
+  const palautettava = [];
+  let uusiLauta = null;
   switch (nappula.tyyppi) {
     case "KUNINGAS":
-      uusiArvo = siirronArvo(lauta, nappula.väri, nappulaI - 1, nappulaJ);
-      if (uusiArvo > arvo) {
-        arvo = uusiArvo;
-        uusiI = nappulaI - 1;
-        uusiJ = nappulaJ;
+      if (voikoSiirtää(lauta, nappula.väri, nappulaI - 1, nappulaJ)) {
+        uusiLauta = kopioi2dTaulukko(lauta);
+        uusiLauta[nappulaI][nappulaJ] = null;
+        uusiLauta[nappulaI - 1][nappulaJ] = nappula;
+        palautettava.push(uusiLauta);
       }
 
-      uusiArvo = siirronArvo(lauta, nappula.väri, nappulaI, nappulaJ - 1);
-      if (uusiArvo > arvo) {
-        arvo = uusiArvo;
-        uusiI = nappulaI;
-        uusiJ = nappulaJ - 1;
+      if (voikoSiirtää(lauta, nappula.väri, nappulaI, nappulaJ - 1)) {
+        uusiLauta = kopioi2dTaulukko(lauta);
+        uusiLauta[nappulaI][nappulaJ] = null;
+        uusiLauta[nappulaI][nappulaJ - 1] = nappula;
+        palautettava.push(uusiLauta);
       }
 
-      uusiArvo = siirronArvo(lauta, nappula.väri, nappulaI + 1, nappulaJ);
-      if (uusiArvo > arvo) {
-        arvo = uusiArvo;
-        uusiI = nappulaI + 1;
-        uusiJ = nappulaJ;
+      if (voikoSiirtää(lauta, nappula.väri, nappulaI + 1, nappulaJ)) {
+        uusiLauta = kopioi2dTaulukko(lauta);
+        uusiLauta[nappulaI][nappulaJ] = null;
+        uusiLauta[nappulaI + 1][nappulaJ] = nappula;
+        palautettava.push(uusiLauta);
       }
 
-      uusiArvo = siirronArvo(lauta, nappula.väri, nappulaI, nappulaJ + 1);
-      if (uusiArvo > arvo) {
-        arvo = uusiArvo;
-        uusiI = nappulaI;
-        uusiJ = nappulaJ + 1;
-      }
-
-      if (parhaanSiirronArvo < arvo) {
-        parhaanSiirronArvo = arvo;
+      if (voikoSiirtää(lauta, nappula.väri, nappulaI, nappulaJ + 1)) {
         uusiLauta = kopioi2dTaulukko(lauta);
         uusiLauta[nappulaI][nappulaJ] = null;
         uusiLauta[nappulaI][nappulaJ + 1] = nappula;
+        palautettava.push(uusiLauta);
       }
       break;
     case "KUNINGATAR":
@@ -90,31 +102,16 @@ const haeNappulanParasMahdollinenSiirto = (
     case "LÄHETTI":
       break;
     case "RATSU":
-      arvo = -Infinity;
-
       for (let i = -2; i <= 2; i++) {
         for (let j = -2; j <= 2; j++) {
-          if (Math.abs(i) + Math.abs(j) === 4 || i === 0 || j === 0) continue;
-          const uusiArvo = siirronArvo(
-            lauta,
-            nappula.väri,
-            nappulaI + i,
-            nappulaJ + j
-          );
-
-          if (uusiArvo > arvo) {
-            arvo = uusiArvo;
-            uusiI = nappulaI + i;
-            uusiJ = nappulaJ + j;
+          if (i === 0 || j === 0 || i === j) continue;
+          if (voikoSiirtää(lauta, nappula.väri, nappulaI + i, nappulaJ + 1)) {
+            uusiLauta = kopioi2dTaulukko(lauta);
+            uusiLauta[nappulaI][nappulaJ] = null;
+            uusiLauta[nappulaI + i][nappulaJ + j] = nappula;
+            palautettava.push(uusiLauta);
           }
         }
-      }
-
-      if (parhaanSiirronArvo < arvo) {
-        parhaanSiirronArvo = arvo;
-        uusiLauta = kopioi2dTaulukko(lauta);
-        uusiLauta[nappulaI][nappulaJ] = null;
-        uusiLauta[uusiI][uusiJ] = nappula;
       }
       break;
     case "SOTILAS":
@@ -125,35 +122,82 @@ const haeNappulanParasMahdollinenSiirto = (
       throw new Error("Väärä nappulan tyyppi");
   }
 
-  if (!uusiLauta) uusiLauta = kopioi2dTaulukko(lauta);
-  return [parhaanSiirronArvo, uusiLauta];
+  return palautettava;
 };
 
-const haeLaudanParasMahdollinenSiirto = (
+const minimax = (
   lauta: Lauta,
+  syvyys: number,
+  alfa: number,
+  beeta: number,
   siirronTekijä: Puoli = "MUSTA"
-): Lauta => {
-  let parhaanSiirronArvo = -Infinity;
-  let uusiLauta = null;
-  for (let i = 0; i < 8; i++) {
-    for (let j = 0; j < 8; j++) {
-      const nappula = lauta[i][j];
-      if (!nappula || nappula.väri !== siirronTekijä) continue;
-      const [
-        nappulanParhaanSiirronArvo,
-        uudenLaudanTila,
-      ] = haeNappulanParasMahdollinenSiirto(lauta, nappula, i, j);
-
-      if (nappulanParhaanSiirronArvo > parhaanSiirronArvo) {
-        parhaanSiirronArvo = nappulanParhaanSiirronArvo;
-        uusiLauta = uudenLaudanTila;
-      }
-    }
+): [number, Lauta] => {
+  if (syvyys === 0 /* TODO: tai peli on loppu */) {
+    return [arvioiLaudanTilanne(lauta), lauta]; // TODO: arvioi laudan tila
   }
 
-  if (!uusiLauta) throw Error("Ei lautaa mitä palauttaa");
+  // perusideana musta yrittää saada mahdollisimman ison arvon ja valkoinen pienen
+  if (siirronTekijä === "MUSTA") {
+    // alustetaan huonoimmalla mahdollisella arvolla
+    let parhaanSiirronArvo = -Infinity;
+    let parasPositio = lauta;
+    for (let i = 0; i < 8; i++) {
+      for (let j = 0; j < 8; j++) {
+        const nappula = lauta[i][j];
+        if (!nappula || nappula.väri !== "MUSTA") continue;
 
-  return uusiLauta;
+        for (const siirto of haeMahdollisetSiirrot(lauta, nappula, i, j)) {
+          const [arvo, uusiLauta] = minimax(
+            siirto,
+            syvyys - 1,
+            alfa,
+            beeta,
+            "VALKOINEN"
+          );
+          if (arvo > parhaanSiirronArvo) {
+            parhaanSiirronArvo = arvo;
+            parasPositio = uusiLauta;
+          }
+          alfa = Math.max(alfa, arvo);
+          if (beeta <= alfa) {
+            break;
+          }
+        }
+      }
+    }
+
+    return [parhaanSiirronArvo, parasPositio];
+  } else {
+    // alustetaan huonoimmalla mahdollisella arvolla
+    let parhaanSiirronArvo = +Infinity;
+    let parasPositio = lauta;
+    for (let i = 0; i < 8; i++) {
+      for (let j = 0; j < 8; j++) {
+        const nappula = lauta[i][j];
+        if (!nappula || nappula.väri !== "VALKOINEN") continue;
+
+        for (const siirto of haeMahdollisetSiirrot(lauta, nappula, i, j)) {
+          const [arvo, uusiLauta] = minimax(
+            siirto,
+            syvyys - 1,
+            alfa,
+            beeta,
+            "VALKOINEN"
+          );
+          if (arvo < parhaanSiirronArvo) {
+            parhaanSiirronArvo = arvo;
+            parasPositio = uusiLauta;
+          }
+          alfa = Math.min(beeta, arvo);
+          if (beeta <= alfa) {
+            break;
+          }
+        }
+      }
+    }
+
+    return [parhaanSiirronArvo, parasPositio];
+  }
 };
 
 /**
@@ -162,6 +206,9 @@ const haeLaudanParasMahdollinenSiirto = (
  * @param lauta Laudan tila tällä hetkellä
  * @returns Laudan uusi tila tekoälyn siirron jälkeen
  */
-export const haeLautaTekoälynSiirronJälkeen = (lauta: Lauta) => {
-  return haeLaudanParasMahdollinenSiirto(lauta);
+export const haeLautaTekoälynSiirronJälkeen = (
+  lauta: Lauta,
+  minimaxSyvyys: number = 3
+) => {
+  return minimax(lauta, minimaxSyvyys, -Infinity, +Infinity, "MUSTA")[1];
 };

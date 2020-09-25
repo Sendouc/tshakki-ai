@@ -13,6 +13,8 @@ Kaikki tekoälyyn ja algoritmeihin liittyvä koodi on kansiossa [logiikka](https
 ## Dokumentit
 
 [Määrittely](https://github.com/Sendouc/tshakki-ai/blob/master/dokumentaatio/m%C3%A4%C3%A4rittely.md)
+[Toteutus](https://github.com/Sendouc/tshakki-ai/blob/master/dokumentaatio/toteutus.md)
+[Testaus](https://github.com/Sendouc/tshakki-ai/blob/master/dokumentaatio/testaus.md)
 
 ## Viikkoraportit
 

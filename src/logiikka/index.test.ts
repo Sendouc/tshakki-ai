@@ -162,3 +162,5 @@ const laudanTila = [
 it("palauttaa validin laudan", () => {
   expect(laudanTila).not.toBeFalsy();
 });
+
+export {};

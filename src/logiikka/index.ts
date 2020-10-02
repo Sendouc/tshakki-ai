@@ -57,7 +57,7 @@ const voikoSiirtää = (
  * @param nappula Nappula jota ollaan siirtämässä
  * @param nappulaI Nappulan "i" indeksi laudalla
  * @param nappulaJ Nappulan "j" indeksi laudalla
- * @returns Parhaan mahdollisen siirron arvon ja uuden laudan tilan
+ * @returns Nappulan mahdolliset siirrot
  */
 const haeMahdollisetSiirrot = (
   lauta: Lauta,
@@ -100,12 +100,71 @@ const haeMahdollisetSiirrot = (
     case "KUNINGATAR":
       break;
     case "LÄHETTI":
+      /*for (let i = nappulaI + 1; i < 8; i++) {
+        for (let j = nappulaJ + 1; j < 8; j++) {
+          if (voikoSiirtää(lauta, nappula.väri, i, j)) {
+            uusiLauta = kopioi2dTaulukko(lauta);
+            uusiLauta[nappulaI][nappulaJ] = null;
+            uusiLauta[i][j] = nappula;
+            palautettava.push(uusiLauta);
+
+            if (!!lauta[i][nappulaJ]) break;
+          } else {
+            break;
+          }
+        }
+      }
+
+      for (let i = nappulaI + 1; i < 8; i++) {
+        for (let j = nappulaJ - 1; j >= 0; j++) {
+          if (voikoSiirtää(lauta, nappula.väri, i, j)) {
+            uusiLauta = kopioi2dTaulukko(lauta);
+            uusiLauta[nappulaI][nappulaJ] = null;
+            uusiLauta[i][j] = nappula;
+            palautettava.push(uusiLauta);
+
+            if (!!lauta[i][nappulaJ]) break;
+          } else {
+            break;
+          }
+        }
+      }
+
+      for (let i = nappulaI - 1; i >= 0; i++) {
+        for (let j = nappulaJ + 1; j < 8; j++) {
+          if (voikoSiirtää(lauta, nappula.väri, i, j)) {
+            uusiLauta = kopioi2dTaulukko(lauta);
+            uusiLauta[nappulaI][nappulaJ] = null;
+            uusiLauta[i][j] = nappula;
+            palautettava.push(uusiLauta);
+
+            if (!!lauta[i][nappulaJ]) break;
+          } else {
+            break;
+          }
+        }
+      }
+
+      for (let i = nappulaI - 1; i >= 0; i++) {
+        for (let j = nappulaJ - 1; j >= 0; j++) {
+          if (voikoSiirtää(lauta, nappula.väri, i, j)) {
+            uusiLauta = kopioi2dTaulukko(lauta);
+            uusiLauta[nappulaI][nappulaJ] = null;
+            uusiLauta[i][j] = nappula;
+            palautettava.push(uusiLauta);
+
+            if (!!lauta[i][nappulaJ]) break;
+          } else {
+            break;
+          }
+        }
+      }*/
       break;
     case "RATSU":
       for (let i = -2; i <= 2; i++) {
         for (let j = -2; j <= 2; j++) {
           if (i === 0 || j === 0 || i === j) continue;
-          if (voikoSiirtää(lauta, nappula.väri, nappulaI + i, nappulaJ + 1)) {
+          if (voikoSiirtää(lauta, nappula.väri, nappulaI + i, nappulaJ + j)) {
             uusiLauta = kopioi2dTaulukko(lauta);
             uusiLauta[nappulaI][nappulaJ] = null;
             uusiLauta[nappulaI + i][nappulaJ + j] = nappula;
@@ -117,8 +176,88 @@ const haeMahdollisetSiirrot = (
     case "SOTILAS":
       break;
     case "TORNI":
+      for (let i = nappulaI + 1; i < 8; i++) {
+        const onLaillinenSiirto = voikoSiirtää(
+          lauta,
+          nappula.väri,
+          i,
+          nappulaJ
+        );
+
+        if (onLaillinenSiirto) {
+          uusiLauta = kopioi2dTaulukko(lauta);
+          uusiLauta[nappulaI][nappulaJ] = null;
+          uusiLauta[i][nappulaJ] = nappula;
+          palautettava.push(uusiLauta);
+
+          if (!!lauta[i][nappulaJ]) break;
+        } else {
+          break;
+        }
+      }
+
+      for (let i = nappulaI - 1; i >= 0; i--) {
+        const onLaillinenSiirto = voikoSiirtää(
+          lauta,
+          nappula.väri,
+          i,
+          nappulaJ
+        );
+
+        if (onLaillinenSiirto) {
+          uusiLauta = kopioi2dTaulukko(lauta);
+          uusiLauta[nappulaI][nappulaJ] = null;
+          uusiLauta[i][nappulaJ] = nappula;
+          palautettava.push(uusiLauta);
+
+          if (!!lauta[i][nappulaJ]) break;
+        } else {
+          break;
+        }
+      }
+
+      for (let j = nappulaJ + 1; j < 8; j++) {
+        const onLaillinenSiirto = voikoSiirtää(
+          lauta,
+          nappula.väri,
+          nappulaI,
+          j
+        );
+
+        if (onLaillinenSiirto) {
+          uusiLauta = kopioi2dTaulukko(lauta);
+          uusiLauta[nappulaI][nappulaJ] = null;
+          uusiLauta[nappulaI][j] = nappula;
+          palautettava.push(uusiLauta);
+
+          if (!!lauta[nappulaI][j]) break;
+        } else {
+          break;
+        }
+      }
+
+      for (let j = nappulaJ - 1; j >= 0; j--) {
+        const onLaillinenSiirto = voikoSiirtää(
+          lauta,
+          nappula.väri,
+          nappulaI,
+          j
+        );
+
+        if (onLaillinenSiirto) {
+          uusiLauta = kopioi2dTaulukko(lauta);
+          uusiLauta[nappulaI][nappulaJ] = null;
+          uusiLauta[nappulaI][j] = nappula;
+          palautettava.push(uusiLauta);
+
+          if (!!lauta[nappulaI][j]) break;
+        } else {
+          break;
+        }
+      }
       break;
     default:
+      console.log(nappula.tyyppi);
       throw new Error("Väärä nappulan tyyppi");
   }
 
@@ -133,7 +272,7 @@ const minimax = (
   siirronTekijä: Puoli = "MUSTA"
 ): [number, Lauta] => {
   if (syvyys === 0 /* TODO: tai peli on loppu */) {
-    return [arvioiLaudanTilanne(lauta), lauta]; // TODO: arvioi laudan tila
+    return [arvioiLaudanTilanne(lauta), lauta];
   }
 
   // perusideana musta yrittää saada mahdollisimman ison arvon ja valkoinen pienen

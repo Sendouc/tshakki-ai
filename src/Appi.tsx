@@ -18,7 +18,7 @@ const nappulaKoodiNimeksi: { [key: string]: NappulanTyyppi } = {
   k: "KUNINGAS",
 };
 
-const nappulaNimiKoodiksi: { [key in NappulanTyyppi]: string } = {
+const nappulaNimiKoodiksi: Record<NappulanTyyppi, string> = {
   SOTILAS: "p",
   RATSU: "n",
   LÄHETTI: "b",
@@ -27,7 +27,7 @@ const nappulaNimiKoodiksi: { [key in NappulanTyyppi]: string } = {
   KUNINGAS: "k",
 };
 
-const ruudunKirjainIndeksiksi: { [key: string]: number } = {
+const ruudunKirjainIndeksiksi: Record<string, number> = {
   a: 0,
   b: 1,
   c: 2,
@@ -110,6 +110,8 @@ const Appi = () => {
     }
 
     const uusiLauta: string[] = [];
+
+    console.log(lautaNyt);
 
     const lautaTekoälynSiirronJälkeen = haeLautaTekoälynSiirronJälkeen(
       lautaNyt

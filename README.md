@@ -12,8 +12,8 @@ Kaikki tekoälyyn ja algoritmeihin liittyvä koodi on kansiossa [logiikka](https
 
 ## Dokumentit
 
-[Määrittely](https://github.com/Sendouc/tshakki-ai/blob/master/dokumentaatio/m%C3%A4%C3%A4rittely.md)
-[Toteutus](https://github.com/Sendouc/tshakki-ai/blob/master/dokumentaatio/toteutus.md)
+[Määrittely](https://github.com/Sendouc/tshakki-ai/blob/master/dokumentaatio/m%C3%A4%C3%A4rittely.md)  
+[Toteutus](https://github.com/Sendouc/tshakki-ai/blob/master/dokumentaatio/toteutus.md)  
 [Testaus](https://github.com/Sendouc/tshakki-ai/blob/master/dokumentaatio/testaus.md)
 
 ## Viikkoraportit
@@ -21,7 +21,7 @@ Kaikki tekoälyyn ja algoritmeihin liittyvä koodi on kansiossa [logiikka](https
 [Viikko 1](https://github.com/Sendouc/tshakki-ai/blob/master/dokumentaatio/viikkoraportti_1.md)  
 [Viikko 2](https://github.com/Sendouc/tshakki-ai/blob/master/dokumentaatio/viikkoraportti_2.md)  
 [Viikko 3](https://github.com/Sendouc/tshakki-ai/blob/master/dokumentaatio/viikkoraportti_3.md)  
-[Viikko 4](https://github.com/Sendouc/tshakki-ai/blob/master/dokumentaatio/viikkoraportti_4.md)
+[Viikko 4](https://github.com/Sendouc/tshakki-ai/blob/master/dokumentaatio/viikkoraportti_4.md)  
 [Viikko 5](https://github.com/Sendouc/tshakki-ai/blob/master/dokumentaatio/viikkoraportti_5.md)
 
 ## Yksikkötestaus

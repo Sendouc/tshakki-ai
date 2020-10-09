@@ -4,6 +4,8 @@ Testaukseen on käytetty jest-kirjastoa. Suorituskykyä testattu antamalla eri p
 
 # Minkälaisilla syötteillä testaus tehtiin
 
+- Varsinaisissa testeissä käytetty laudan lähtötilaa. Sitä käyttämällä on helppo tietää, mitä eri funktioiden tulisi palauttaa jos ne toimivat oikein.
+
 - Suorituskykytesteissä minimax eri syvyyksillä: 1-4 ottaen syötteeksi shakin alkutilanne.
 
 # Miten testit voidaan toistaa

@@ -68,7 +68,7 @@ const minimax = (
         if (!nappula || nappula.väri !== "MUSTA") continue;
 
         for (const siirto of haeMahdollisetSiirrot(lauta, nappula, i, j)) {
-          const [arvo, uusiLauta] = minimax(
+          const [arvo] = minimax(
             siirto,
             syvyys - 1,
             alfa,
@@ -77,7 +77,7 @@ const minimax = (
           );
           if (arvo > parhaanSiirronArvo) {
             parhaanSiirronArvo = arvo;
-            parasPositio = uusiLauta;
+            parasPositio = siirto;
           }
           alfa = Math.max(alfa, arvo);
           if (beeta <= alfa) {
@@ -98,18 +98,18 @@ const minimax = (
         if (!nappula || nappula.väri !== "VALKOINEN") continue;
 
         for (const siirto of haeMahdollisetSiirrot(lauta, nappula, i, j)) {
-          const [arvo, uusiLauta] = minimax(
+          const [arvo] = minimax(
             siirto,
             syvyys - 1,
             alfa,
             beeta,
-            "VALKOINEN"
+            "MUSTA"
           );
           if (arvo < parhaanSiirronArvo) {
             parhaanSiirronArvo = arvo;
-            parasPositio = uusiLauta;
+            parasPositio = siirto;
           }
-          alfa = Math.min(beeta, arvo);
+          beeta = Math.min(beeta, arvo);
           if (beeta <= alfa) {
             break;
           }

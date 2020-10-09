@@ -111,8 +111,6 @@ const Appi = () => {
 
     const uusiLauta: string[] = [];
 
-    console.log(lautaNyt);
-
     const lautaTekoälynSiirronJälkeen = haeLautaTekoälynSiirronJälkeen(
       lautaNyt
     );

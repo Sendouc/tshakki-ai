@@ -7,7 +7,7 @@ const nappuloidenArvot: { [key in NappulanTyyppi]: number } = {
   LÄHETTI: 3.5,
   TORNI: 5,
   KUNINGATAR: 9,
-  KUNINGAS: Infinity,
+  KUNINGAS: 99999999999,
 };
 
 const arvioiLaudanTilanne = (lauta: Lauta) => {

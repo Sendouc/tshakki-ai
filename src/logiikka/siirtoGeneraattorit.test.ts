@@ -1,5 +1,5 @@
-import { haeLautaTekoälynSiirronJälkeen } from ".";
 import { Lauta } from "../tyypit";
+import { siirtoGeneraattorit } from "./siirtoGeneraattorit";
 
 const laudanTila: Lauta = [
   [
@@ -178,19 +178,29 @@ const laudanTila: Lauta = [
       "tyyppi": "TORNI"
     }
   ]
-]
+];
 
-it("palauttaa validin laudan", () => {
-  const uusiLauta = haeLautaTekoälynSiirronJälkeen(laudanTila)
+it.only("nappuloilla oikea määrä aloitusvaihtoehtoja", () => {
+  const ratsuSiirrot = [...siirtoGeneraattorit["RATSU"](laudanTila, {
+    väri: "MUSTA",
+    tyyppi: "RATSU",
+  }, 7, 6)]
 
-  expect(uusiLauta).not.toBeFalsy();
+  expect(ratsuSiirrot.length).toBe(2)
+
+  const kuningasSiirrot = [...siirtoGeneraattorit["KUNINGAS"](laudanTila, {
+    väri: "MUSTA",
+    tyyppi: "KUNINGAS",
+  }, 7, 4)]
+
+  expect(kuningasSiirrot.length).toBe(0)
+
+  const torniSiirrot = [...siirtoGeneraattorit["TORNI"](laudanTila, {
+    väri: "MUSTA",
+    tyyppi: "TORNI",
+  }, 7, 0)]
+
+  expect(torniSiirrot.length).toBe(0)
 });
 
-it("muuttaa lauttaa", () => {
-  const uusiLauta = haeLautaTekoälynSiirronJälkeen(laudanTila)
-
-  expect(JSON.stringify(uusiLauta)).not.toBe(JSON.stringify(laudanTila));
-})
-
 export { };
-

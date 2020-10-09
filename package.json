@@ -40,7 +40,9 @@
   },
   "jest": {
     "collectCoverageFrom": [
-      "src/logiikka/*.ts"
+      "src/logiikka/index.ts",
+      "src/logiikka/siirtoGeneraattorit.ts",
+      "src/logiikka/työkalut.ts"
     ]
   },
   "devDependencies": {

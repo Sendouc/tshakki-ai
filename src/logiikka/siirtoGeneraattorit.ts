@@ -36,6 +36,7 @@ export const siirtoGeneraattorit: Record<
     let uusiLauta: Lauta | null = null;
 
     if (voikoSiirtää(lauta, nappula.väri, nappulaI - 1, nappulaJ)) {
+      console.log("1")
       uusiLauta = kopioi2dTaulukko(lauta);
       uusiLauta[nappulaI][nappulaJ] = null;
       uusiLauta[nappulaI - 1][nappulaJ] = nappula;
@@ -43,6 +44,7 @@ export const siirtoGeneraattorit: Record<
     }
 
     if (voikoSiirtää(lauta, nappula.väri, nappulaI, nappulaJ - 1)) {
+      console.log("2")
       uusiLauta = kopioi2dTaulukko(lauta);
       uusiLauta[nappulaI][nappulaJ] = null;
       uusiLauta[nappulaI][nappulaJ - 1] = nappula;
@@ -50,6 +52,7 @@ export const siirtoGeneraattorit: Record<
     }
 
     if (voikoSiirtää(lauta, nappula.väri, nappulaI + 1, nappulaJ)) {
+      console.log("3")
       uusiLauta = kopioi2dTaulukko(lauta);
       uusiLauta[nappulaI][nappulaJ] = null;
       uusiLauta[nappulaI + 1][nappulaJ] = nappula;
@@ -57,6 +60,7 @@ export const siirtoGeneraattorit: Record<
     }
 
     if (voikoSiirtää(lauta, nappula.väri, nappulaI, nappulaJ + 1)) {
+      console.log("4")
       uusiLauta = kopioi2dTaulukko(lauta);
       uusiLauta[nappulaI][nappulaJ] = null;
       uusiLauta[nappulaI][nappulaJ + 1] = nappula;

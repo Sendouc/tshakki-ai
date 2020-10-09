@@ -24,7 +24,7 @@ Shakkia pelataan [react-chess](https://github.com/rexxars/react-chess) kirjaston
 
 ## Tavoitteena olevat aika- ja tilavaativuudet
 
-Rajoittavana tekinänä on Minimax-algoritmi. Arvioidaan kompleksiuuksia, kun **b** on mahdollisten siirtojen määrä ja **m** on puun maksimisyvyys.
+Rajoittavana tekijänä on Minimax-algoritmi. Arvioidaan kompleksiuuksia, kun **b** on mahdollisten siirtojen määrä ja **m** on puun maksimisyvyys.
 
 **Aikakompleksisuus**: O(b<sup>m</sup>)  
 **Tilakompleksisuus**: O(bm)

@@ -76,6 +76,9 @@ const Appi = () => {
     "r@h8",
   ]);
 
+  const [edellinenLauta, setEdellinenLauta] = useState<string[] | null>(null);
+  const [syvyys, setSyvyys] = useState(3);
+
   const onNappulanLiikutus = (_: any, ruudusta: string, ruutuun: string) => {
     const lautaSiirronJälkeen = [...lauta]
       // poistetaan mahdollisesti syöty nappula
@@ -112,7 +115,8 @@ const Appi = () => {
     const uusiLauta: string[] = [];
 
     const lautaTekoälynSiirronJälkeen = haeLautaTekoälynSiirronJälkeen(
-      lautaNyt
+      lautaNyt,
+      syvyys
     );
 
     for (const [indexRivi, rivi] of lautaTekoälynSiirronJälkeen.entries()) {
@@ -129,6 +133,7 @@ const Appi = () => {
       }
     }
 
+    setEdellinenLauta(lauta);
     setLauta(uusiLauta);
   };
 
@@ -147,6 +152,49 @@ const Appi = () => {
           piece.notation.split("@")[0].toUpperCase()
         }
       />
+      <div style={{ display: "flex", justifyContent: "space-between" }}>
+        <div>
+          {!!edellinenLauta ? (
+            <button
+              className="big-button"
+              onClick={() => {
+                setLauta(edellinenLauta!);
+                setEdellinenLauta(null);
+              }}
+            >
+              Hups
+            </button>
+          ) : (
+            <div />
+          )}
+        </div>
+        <div>
+          <button
+            onClick={() => setSyvyys(1)}
+            className={`big-button${syvyys === 1 ? " active" : ""}`}
+          >
+            1
+          </button>
+          <button
+            onClick={() => setSyvyys(2)}
+            className={`big-button${syvyys === 2 ? " active" : ""}`}
+          >
+            2
+          </button>
+          <button
+            onClick={() => setSyvyys(3)}
+            className={`big-button${syvyys === 3 ? " active" : ""}`}
+          >
+            3
+          </button>
+          <button
+            onClick={() => setSyvyys(4)}
+            className={`big-button${syvyys === 4 ? " active" : ""}`}
+          >
+            4
+          </button>
+        </div>
+      </div>
     </div>
   );
 };

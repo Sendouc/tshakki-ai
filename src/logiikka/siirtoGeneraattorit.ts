@@ -6,7 +6,7 @@ const voikoSiirtää = (
   väri: Puoli,
   i: number,
   j: number,
-  vainSyönti: boolean = false
+  saaAinoastaan?: "SYÖDÄ" | "LIIKKUA"
 ) => {
   // ei voida siirtää laudan ulkopuoelle
   if (i < 0 || j < 0 || i > 7 || j > 7) return false;
@@ -18,7 +18,11 @@ const voikoSiirtää = (
 
   // sotilas voi liikkua tiettyihin ruutuihin vain syödessä
   const vastustajanVäri = väri === "MUSTA" ? "VALKOINEN" : "MUSTA";
-  if (vainSyönti && nappula?.väri !== vastustajanVäri) return false;
+  if (saaAinoastaan === "SYÖDÄ" && nappula?.väri !== vastustajanVäri)
+    return false;
+
+  // sotilas voi liikkua tiettyihin ruutuihin vain jos siinä ei ole mitään nappulaa
+  if (saaAinoastaan === "LIIKKUA" && !!nappula) return false;
 
   return true;
 };
@@ -63,7 +67,87 @@ export const siirtoGeneraattorit: Record<
       yield uusiLauta;
     }
   },
-  SOTILAS: function* (lauta, nappula, nappulaI, nappulaJ) {},
+  SOTILAS: function* (lauta, nappula, nappulaI, nappulaJ) {
+    let uusiLauta: Lauta | null = null;
+
+    if (nappula.väri === "VALKOINEN") {
+      if (
+        voikoSiirtää(lauta, nappula.väri, nappulaI + 1, nappulaJ, "LIIKKUA")
+      ) {
+        uusiLauta = kopioi2dTaulukko(lauta);
+        uusiLauta[nappulaI][nappulaJ] = null;
+        uusiLauta[nappulaI + 1][nappulaJ] = nappula;
+        yield uusiLauta;
+      }
+
+      if (
+        voikoSiirtää(lauta, nappula.väri, nappulaI + 1, nappulaJ - 1, "SYÖDÄ")
+      ) {
+        uusiLauta = kopioi2dTaulukko(lauta);
+        uusiLauta[nappulaI][nappulaJ] = null;
+        uusiLauta[nappulaI + 1][nappulaJ - 1] = nappula;
+        yield uusiLauta;
+      }
+
+      if (
+        voikoSiirtää(lauta, nappula.väri, nappulaI + 1, nappulaJ + 1, "SYÖDÄ")
+      ) {
+        uusiLauta = kopioi2dTaulukko(lauta);
+        uusiLauta[nappulaI][nappulaJ] = null;
+        uusiLauta[nappulaI + 1][nappulaJ + 1] = nappula;
+        yield uusiLauta;
+      }
+
+      if (nappulaI === 1) {
+        if (
+          voikoSiirtää(lauta, nappula.väri, nappulaI + 2, nappulaJ, "LIIKKUA")
+        ) {
+          uusiLauta = kopioi2dTaulukko(lauta);
+          uusiLauta[nappulaI][nappulaJ] = null;
+          uusiLauta[nappulaI + 2][nappulaJ] = nappula;
+          yield uusiLauta;
+        }
+      }
+    } else {
+      if (
+        voikoSiirtää(lauta, nappula.väri, nappulaI - 1, nappulaJ, "LIIKKUA")
+      ) {
+        uusiLauta = kopioi2dTaulukko(lauta);
+        uusiLauta[nappulaI][nappulaJ] = null;
+        uusiLauta[nappulaI - 1][nappulaJ] = nappula;
+        yield uusiLauta;
+      }
+
+      if (
+        voikoSiirtää(lauta, nappula.väri, nappulaI - 1, nappulaJ - 1, "SYÖDÄ")
+      ) {
+        uusiLauta = kopioi2dTaulukko(lauta);
+        uusiLauta[nappulaI][nappulaJ] = null;
+        uusiLauta[nappulaI - 1][nappulaJ - 1] = nappula;
+        yield uusiLauta;
+      }
+
+      if (
+        voikoSiirtää(lauta, nappula.väri, nappulaI - 1, nappulaJ + 1, "SYÖDÄ")
+      ) {
+        uusiLauta = kopioi2dTaulukko(lauta);
+        uusiLauta[nappulaI][nappulaJ] = null;
+        uusiLauta[nappulaI - 1][nappulaJ + 1] = nappula;
+        yield uusiLauta;
+      }
+
+      if (nappulaI === 6) {
+        if (
+          voikoSiirtää(lauta, nappula.väri, nappulaI - 2, nappulaJ, "LIIKKUA")
+        ) {
+          uusiLauta = kopioi2dTaulukko(lauta);
+          uusiLauta[nappulaI][nappulaJ] = null;
+          uusiLauta[nappulaI - 2][nappulaJ] = nappula;
+          yield uusiLauta;
+        }
+      }
+    }
+  },
   RATSU: function* (lauta, nappula, nappulaI, nappulaJ) {
     let uusiLauta: Lauta | null = null;
 

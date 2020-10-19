@@ -162,36 +162,36 @@ const Appi = () => {
                 setEdellinenLauta(null);
               }}
             >
-              Hups
+              Hups 🔙
             </button>
           ) : (
             <div />
           )}
         </div>
-        <div>
+        <div style={{ display: "flex", flexDirection: "column" }}>
           <button
             onClick={() => setSyvyys(1)}
             className={`big-button${syvyys === 1 ? " active" : ""}`}
           >
-            1
+            Helppo 🥱
           </button>
           <button
             onClick={() => setSyvyys(2)}
             className={`big-button${syvyys === 2 ? " active" : ""}`}
           >
-            2
+            Normaali 😐
           </button>
           <button
             onClick={() => setSyvyys(3)}
             className={`big-button${syvyys === 3 ? " active" : ""}`}
           >
-            3
+            Haastava 😓
           </button>
           <button
             onClick={() => setSyvyys(4)}
             className={`big-button${syvyys === 4 ? " active" : ""}`}
           >
-            4
+            Vaikea 😠
           </button>
         </div>
       </div>

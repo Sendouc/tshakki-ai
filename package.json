@@ -10,6 +10,7 @@
     "@types/node": "^14.10.2",
     "@types/react": "^16.9.49",
     "@types/react-dom": "^16.9.8",
+    "gh-pages": "^3.1.0",
     "react": "^16.13.1",
     "react-chess": "^1.1.1",
     "react-dom": "^16.13.1",
@@ -21,7 +22,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "test:coverage": "react-scripts test --coverage --watchAll=false",
-    "test:suorituskyky": "ts-node src/logiikka/suorituskykytestit.ts"
+    "test:suorituskyky": "ts-node src/logiikka/suorituskykytestit.ts",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -47,5 +50,6 @@
   },
   "devDependencies": {
     "ts-node-dev": "^1.0.0-pre.63"
-  }
+  },
+  "homepage": "https://sendouc.github.io/tshakki-ai"
 }

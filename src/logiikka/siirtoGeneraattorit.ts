@@ -163,7 +163,7 @@ export const siirtoGeneraattorit: Record<
 
     for (let i = -2; i <= 2; i++) {
       for (let j = -2; j <= 2; j++) {
-        if (i === 0 || j === 0 || i === j) continue;
+        if (i === 0 || j === 0 || Math.abs(i) === Math.abs(j)) continue;
         if (voikoSiirtää(lauta, nappula.väri, nappulaI + i, nappulaJ + j)) {
           uusiLauta = kopioi2dTaulukko(lauta);
           uusiLauta[nappulaI][nappulaJ] = null;

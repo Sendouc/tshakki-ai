@@ -235,63 +235,71 @@ export const siirtoGeneraattorit: Record<
       }
     }
 
-    loop: for (let i = nappulaI + 1; i < 8; i++) {
-      for (let j = nappulaJ + 1; j < 8; j++) {
-        if (voikoSiirtää(lauta, nappula.väri, i, j)) {
-          uusiLauta = kopioi2dTaulukko(lauta);
-          uusiLauta[nappulaI][nappulaJ] = null;
-          uusiLauta[i][j] = nappula;
-          yield uusiLauta;
+    let i = nappulaI;
+    let j = nappulaJ;
+    while (true) {
+      i++;
+      j++;
+      if (voikoSiirtää(lauta, nappula.väri, i, j)) {
+        uusiLauta = kopioi2dTaulukko(lauta);
+        uusiLauta[nappulaI][nappulaJ] = null;
+        uusiLauta[i][j] = nappula;
+        yield uusiLauta;
 
-          if (!!lauta[i][j]) break;
-        } else {
-          break loop;
-        }
+        if (!!lauta[i][j]) break;
+      } else {
+        break;
       }
     }
 
-    loop: for (let i = nappulaI + 1; i < 8; i++) {
-      for (let j = nappulaJ - 1; j >= 0; j--) {
-        if (voikoSiirtää(lauta, nappula.väri, i, j)) {
-          uusiLauta = kopioi2dTaulukko(lauta);
-          uusiLauta[nappulaI][nappulaJ] = null;
-          uusiLauta[i][j] = nappula;
-          yield uusiLauta;
+    i = nappulaI;
+    j = nappulaJ;
+    while (true) {
+      i++;
+      j--;
+      if (voikoSiirtää(lauta, nappula.väri, i, j)) {
+        uusiLauta = kopioi2dTaulukko(lauta);
+        uusiLauta[nappulaI][nappulaJ] = null;
+        uusiLauta[i][j] = nappula;
+        yield uusiLauta;
 
-          if (!!lauta[i][j]) break;
-        } else {
-          break loop;
-        }
+        if (!!lauta[i][j]) break;
+      } else {
+        break;
       }
     }
 
-    loop: for (let i = nappulaI - 1; i >= 0; i--) {
-      for (let j = nappulaJ + 1; j < 8; j++) {
-        if (voikoSiirtää(lauta, nappula.väri, i, j)) {
-          uusiLauta = kopioi2dTaulukko(lauta);
-          uusiLauta[nappulaI][nappulaJ] = null;
-          uusiLauta[i][j] = nappula;
-          yield uusiLauta;
+    i = nappulaI;
+    j = nappulaJ;
+    while (true) {
+      i--;
+      j++;
+      if (voikoSiirtää(lauta, nappula.väri, i, j)) {
+        uusiLauta = kopioi2dTaulukko(lauta);
+        uusiLauta[nappulaI][nappulaJ] = null;
+        uusiLauta[i][j] = nappula;
+        yield uusiLauta;
 
-          if (!!lauta[i][j]) break;
-        } else {
-          break loop;
-        }
+        if (!!lauta[i][j]) break;
+      } else {
+        break;
       }
     }
 
-    loop: for (let i = nappulaI - 1; i >= 0; i--) {
-      for (let j = nappulaJ - 1; j >= 0; j--) {
-        if (voikoSiirtää(lauta, nappula.väri, i, j)) {
-          uusiLauta = kopioi2dTaulukko(lauta);
-          uusiLauta[nappulaI][nappulaJ] = null;
-          uusiLauta[i][j] = nappula;
-          yield uusiLauta;
+    i = nappulaI;
+    j = nappulaJ;
+    while (true) {
+      i--;
+      j--;
+      if (voikoSiirtää(lauta, nappula.väri, i, j)) {
+        uusiLauta = kopioi2dTaulukko(lauta);
+        uusiLauta[nappulaI][nappulaJ] = null;
+        uusiLauta[i][j] = nappula;
+        yield uusiLauta;
 
-          if (!!lauta[i][j]) break;
-        } else {
-          break loop;
-        }
+        if (!!lauta[i][j]) break;
+      } else {
+        break;
       }
     }
   },
@@ -360,63 +368,71 @@ export const siirtoGeneraattorit: Record<
   LÄHETTI: function* (lauta, nappula, nappulaI, nappulaJ) {
     let uusiLauta: Lauta | null = null;
 
-    loop: for (let i = nappulaI + 1; i < 8; i++) {
-      for (let j = nappulaJ + 1; j < 8; j++) {
-        if (voikoSiirtää(lauta, nappula.väri, i, j)) {
-          uusiLauta = kopioi2dTaulukko(lauta);
-          uusiLauta[nappulaI][nappulaJ] = null;
-          uusiLauta[i][j] = nappula;
-          yield uusiLauta;
+    let i = nappulaI;
+    let j = nappulaJ;
+    while (true) {
+      i++;
+      j++;
+      if (voikoSiirtää(lauta, nappula.väri, i, j)) {
+        uusiLauta = kopioi2dTaulukko(lauta);
+        uusiLauta[nappulaI][nappulaJ] = null;
+        uusiLauta[i][j] = nappula;
+        yield uusiLauta;
 
-          if (!!lauta[i][j]) break;
-        } else {
-          break loop;
-        }
+        if (!!lauta[i][j]) break;
+      } else {
+        break;
       }
     }
 
-    loop: for (let i = nappulaI + 1; i < 8; i++) {
-      for (let j = nappulaJ - 1; j >= 0; j--) {
-        if (voikoSiirtää(lauta, nappula.väri, i, j)) {
-          uusiLauta = kopioi2dTaulukko(lauta);
-          uusiLauta[nappulaI][nappulaJ] = null;
-          uusiLauta[i][j] = nappula;
-          yield uusiLauta;
+    i = nappulaI;
+    j = nappulaJ;
+    while (true) {
+      i++;
+      j--;
+      if (voikoSiirtää(lauta, nappula.väri, i, j)) {
+        uusiLauta = kopioi2dTaulukko(lauta);
+        uusiLauta[nappulaI][nappulaJ] = null;
+        uusiLauta[i][j] = nappula;
+        yield uusiLauta;
 
-          if (!!lauta[i][j]) break;
-        } else {
-          break loop;
-        }
+        if (!!lauta[i][j]) break;
+      } else {
+        break;
       }
     }
 
-    loop: for (let i = nappulaI - 1; i >= 0; i--) {
-      for (let j = nappulaJ + 1; j < 8; j++) {
-        if (voikoSiirtää(lauta, nappula.väri, i, j)) {
-          uusiLauta = kopioi2dTaulukko(lauta);
-          uusiLauta[nappulaI][nappulaJ] = null;
-          uusiLauta[i][j] = nappula;
-          yield uusiLauta;
+    i = nappulaI;
+    j = nappulaJ;
+    while (true) {
+      i--;
+      j++;
+      if (voikoSiirtää(lauta, nappula.väri, i, j)) {
+        uusiLauta = kopioi2dTaulukko(lauta);
+        uusiLauta[nappulaI][nappulaJ] = null;
+        uusiLauta[i][j] = nappula;
+        yield uusiLauta;
 
-          if (!!lauta[i][j]) break;
-        } else {
-          break loop;
-        }
+        if (!!lauta[i][j]) break;
+      } else {
+        break;
       }
     }
 
-    loop: for (let i = nappulaI - 1; i >= 0; i--) {
-      for (let j = nappulaJ - 1; j >= 0; j--) {
-        if (voikoSiirtää(lauta, nappula.väri, i, j)) {
-          uusiLauta = kopioi2dTaulukko(lauta);
-          uusiLauta[nappulaI][nappulaJ] = null;
-          uusiLauta[i][j] = nappula;
-          yield uusiLauta;
+    i = nappulaI;
+    j = nappulaJ;
+    while (true) {
+      i--;
+      j--;
+      if (voikoSiirtää(lauta, nappula.väri, i, j)) {
+        uusiLauta = kopioi2dTaulukko(lauta);
+        uusiLauta[nappulaI][nappulaJ] = null;
+        uusiLauta[i][j] = nappula;
+        yield uusiLauta;
 
-          if (!!lauta[i][j]) break;
-        } else {
-          break loop;
-        }
+        if (!!lauta[i][j]) break;
+      } else {
+        break;
       }
     }
   },

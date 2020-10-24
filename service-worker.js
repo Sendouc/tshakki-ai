@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/tshakki-ai/precache-manifest.f1bdd3f512a60bf18541a34b4884b697.js"
+  "/tshakki-ai/precache-manifest.64398a6830f6d5ba2e6c7153cbf00d6c.js"
 );
 
 self.addEventListener('message', (event) => {

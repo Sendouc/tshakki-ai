@@ -171,4 +171,16 @@ console.time("miniMaxDepth4");
 haeLautaTekoälynSiirronJälkeen(laudanAloitusTila, 4);
 console.timeEnd("miniMaxDepth4");
 
+console.time("miniMaxDepth5");
+haeLautaTekoälynSiirronJälkeen(laudanAloitusTila, 5);
+console.timeEnd("miniMaxDepth5");
+
+console.time("miniMaxDepth6");
+haeLautaTekoälynSiirronJälkeen(laudanAloitusTila, 6);
+console.timeEnd("miniMaxDepth6");
+
+console.time("miniMaxDepth7");
+haeLautaTekoälynSiirronJälkeen(laudanAloitusTila, 7);
+console.timeEnd("miniMaxDepth7");
+
 export {};

@@ -11,5 +11,3 @@ Testaukseen on käytetty jest-kirjastoa. Suorituskykyä testattu antamalla eri p
 # Miten testit voidaan toistaa
 
 Käyttämällä komentoa `npm test` tai `npm run test:suorituskyky`.
-
-# Ohjelman toiminnan empiirisen testauksen tulosten esittäminen graafisessa muodossa.

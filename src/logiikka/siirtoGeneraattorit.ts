@@ -1,6 +1,16 @@
 import { Lauta, Nappula, NappulanTyyppi, Puoli } from "../tyypit";
 import { kopioi2dTaulukko } from "./työkalut";
 
+/**
+ * Palauttaa voiko annettuun ruutuun siirtää
+ *
+ * @param lauta Laudan tila tällä hetkellä
+ * @param väri Siirron tekijä
+ * @param i Nappulan "i" indeksi laudalla
+ * @param j Nappulan "j" indeksi laudalla
+ * @param saaAinoastaan Voiko nappula vain syödä tai liikkua ruutuun siirtyessä (sotilaan erikoistapaus)
+ * @returns Voiko annettuun ruutuun siirtää
+ */
 const voikoSiirtää = (
   lauta: Lauta,
   väri: Puoli,

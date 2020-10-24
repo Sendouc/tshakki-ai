@@ -31,8 +31,10 @@ Uskoakseni tämä on myös saavutettu. Tarvittava tila kasva lineaarisesti, mit�
 
 ## Työn mahdolliset puutteet ja parannusehdotukset
 
-TBD
+- Erikoissiirtoja kuten linnoitus ei ole toteutettu
 
 ## Lähteet
 
 [Tirakirja](https://www.cs.helsinki.fi/u/ahslaaks/tirakirja/)
+
+Käytetty myös erilaisia YouTube-videoita joiden sisältö on tosin ollut vastaava tirakirjan asian kanssa.

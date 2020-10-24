@@ -1,8 +1,17 @@
+/**
+ * Kopioi annettun taulukon ("deep copy")
+ *
+ * @param taulukko Kopioitava taulukko
+ * @returns Kopioitu taulukko
+ */
 export const kopioi2dTaulukko = <T>(taulukko: T[][]) => {
-  const palautettava = [];
+  const palautettava = new Array(taulukko.length);
   for (let i = 0; i < taulukko.length; i++) {
-    const lista = taulukko[i];
-    palautettava.push([...lista]);
+    const lista = new Array(taulukko[i].length);
+    for (let j = 0; j < taulukko[i].length; j++) {
+      lista[j] = taulukko[i][j];
+    }
+    palautettava[i] = lista;
   }
 
   return palautettava;

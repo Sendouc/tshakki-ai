@@ -10,6 +10,12 @@ const nappuloidenArvot: { [key in NappulanTyyppi]: number } = {
   KUNINGAS: 99999999999,
 };
 
+/**
+ * Palauttaa laudan tämän hetkisen tilanteen staattisen analyysin
+ *
+ * @param lauta Laudan tila tällä hetkellä
+ * @returns Laudan staattinen analyysi numerona, jossa isompi numero on parempi mustalle
+ */
 const arvioiLaudanTilanne = (lauta: Lauta) => {
   let tilanne = 0;
   for (let i = 0; i < 8; i++) {
@@ -46,6 +52,16 @@ const haeMahdollisetSiirrot = (
   ...siirtoGeneraattorit[nappula.tyyppi](lauta, nappula, nappulaI, nappulaJ),
 ];
 
+/**
+ * Palauttaa laudan uuden tilan tekoälyn tekemän siirron jälkeen.
+ *
+ * @param lauta Laudan tila tällä hetkellä
+ * @param syvyys Minimax-algoritmin syvyys, jos 0 niin algoritmi on loppu
+ * @param alfa Tämänhetkinen paras arvo, jonka musta on saavuttanut aiemmin puussa
+ * @param beeta Tämänhetkinen paras arvo, jonka valkoinen on saavuttanut aiemmin puussa
+ * @param siirronTekijä
+ * @returns Laudan uusi tila tekoälyn siirron jälkeen
+ */
 const minimax = (
   lauta: Lauta,
   syvyys: number,
@@ -68,13 +84,7 @@ const minimax = (
         if (!nappula || nappula.väri !== "MUSTA") continue;
 
         for (const siirto of haeMahdollisetSiirrot(lauta, nappula, i, j)) {
-          const [arvo] = minimax(
-            siirto,
-            syvyys - 1,
-            alfa,
-            beeta,
-            "VALKOINEN"
-          );
+          const [arvo] = minimax(siirto, syvyys - 1, alfa, beeta, "VALKOINEN");
           if (arvo > parhaanSiirronArvo) {
             parhaanSiirronArvo = arvo;
             parasPositio = siirto;
@@ -98,13 +108,7 @@ const minimax = (
         if (!nappula || nappula.väri !== "VALKOINEN") continue;
 
         for (const siirto of haeMahdollisetSiirrot(lauta, nappula, i, j)) {
-          const [arvo] = minimax(
-            siirto,
-            syvyys - 1,
-            alfa,
-            beeta,
-            "MUSTA"
-          );
+          const [arvo] = minimax(siirto, syvyys - 1, alfa, beeta, "MUSTA");
           if (arvo < parhaanSiirronArvo) {
             parhaanSiirronArvo = arvo;
             parasPositio = siirto;

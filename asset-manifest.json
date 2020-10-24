@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/tshakki-ai/static/css/main.7861d459.chunk.css",
+    "main.js": "/tshakki-ai/static/js/main.d3bc4d52.chunk.js",
+    "main.js.map": "/tshakki-ai/static/js/main.d3bc4d52.chunk.js.map",
+    "runtime-main.js": "/tshakki-ai/static/js/runtime-main.f7144151.js",
+    "runtime-main.js.map": "/tshakki-ai/static/js/runtime-main.f7144151.js.map",
+    "static/js/2.17ee8f8c.chunk.js": "/tshakki-ai/static/js/2.17ee8f8c.chunk.js",
+    "static/js/2.17ee8f8c.chunk.js.map": "/tshakki-ai/static/js/2.17ee8f8c.chunk.js.map",
+    "index.html": "/tshakki-ai/index.html",
+    "precache-manifest.f1bdd3f512a60bf18541a34b4884b697.js": "/tshakki-ai/precache-manifest.f1bdd3f512a60bf18541a34b4884b697.js",
+    "service-worker.js": "/tshakki-ai/service-worker.js",
+    "static/css/main.7861d459.chunk.css.map": "/tshakki-ai/static/css/main.7861d459.chunk.css.map",
+    "static/js/2.17ee8f8c.chunk.js.LICENSE.txt": "/tshakki-ai/static/js/2.17ee8f8c.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.f7144151.js",
+    "static/js/2.17ee8f8c.chunk.js",
+    "static/css/main.7861d459.chunk.css",
+    "static/js/main.d3bc4d52.chunk.js"
+  ]
+}

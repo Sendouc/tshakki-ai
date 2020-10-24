@@ -1,5 +1,6 @@
 import { Lauta, Nappula, NappulanTyyppi, Puoli } from "../tyypit";
 import { siirtoGeneraattorit } from "./siirtoGeneraattorit";
+import { onkoPeliLoppu } from "./työkalut";
 
 const nappuloidenArvot: { [key in NappulanTyyppi]: number } = {
   SOTILAS: 1,
@@ -69,7 +70,7 @@ const minimax = (
   beeta: number,
   siirronTekijä: Puoli = "MUSTA"
 ): [number, Lauta] => {
-  if (syvyys === 0 /* TODO: tai peli on loppu */) {
+  if (syvyys === 0 || onkoPeliLoppu(lauta)) {
     return [arvioiLaudanTilanne(lauta), lauta];
   }
 

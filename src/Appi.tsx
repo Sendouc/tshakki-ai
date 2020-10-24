@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Chess from "react-chess";
 import { haeLautaTekoälynSiirronJälkeen } from "./logiikka";
+import { onkoPeliLoppu } from "./logiikka/työkalut";
 import { Lauta, Nappula, NappulanTyyppi } from "./tyypit";
 
 const nappulaKoodiNimeksi: { [key: string]: NappulanTyyppi } = {
@@ -135,6 +136,14 @@ const Appi = () => {
 
     setEdellinenLauta(lauta);
     setLauta(uusiLauta);
+
+    if (onkoPeliLoppu(lautaTekoälynSiirronJälkeen)) {
+      const uusiPeli = window.confirm(
+        "Peli loppui. Aloita uusi peli valitsemalla 'OK' tai jatka valitsemalla 'Cancel'."
+      );
+
+      if (uusiPeli) window.location.reload();
+    }
   };
 
   return (

@@ -1,3 +1,5 @@
+import { Lauta } from "../tyypit";
+
 /**
  * Kopioi annettun taulukon ("deep copy")
  *
@@ -15,4 +17,21 @@ export const kopioi2dTaulukko = <T>(taulukko: T[][]) => {
   }
 
   return palautettava;
+};
+
+/**
+ * Onko peli loppu
+ *
+ * @param lauta Laudan tila tällä hetkellä
+ * @returns Onko peli loppu vai ei
+ */
+export const onkoPeliLoppu = (lauta: Lauta) => {
+  let kuninkaita = 0;
+  for (const rivi of lauta) {
+    for (const nappula of rivi) {
+      if (nappula?.tyyppi === "KUNINGAS") kuninkaita++;
+    }
+  }
+
+  return kuninkaita !== 2;
 };

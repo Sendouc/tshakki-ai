@@ -32,6 +32,9 @@ Uskoakseni tämä on myös saavutettu. Tarvittava tila kasva lineaarisesti, mit�
 ## Työn mahdolliset puutteet ja parannusehdotukset
 
 - Erikoissiirtoja kuten linnoitus ei ole toteutettu
+- Pelin loppumisen logiikka ei vastaa shakkia (ei ole mattia tai shakkimattia vaan peli päättyy kun yksi kuningas on syöty)
+- Pelaaja voi siirtää nappuloitaan minne haluaa
+- Refaktorointi joka nojaa enemmän olio-ohjelmointiin voisi tehdä koodista helpommin laajenettavaa
 
 ## Lähteet
 

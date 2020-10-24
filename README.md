@@ -6,6 +6,10 @@ This project is a data structures and algorithms university course project. Ever
 
 Tavoitteena on tehdä React/TypeScript -ohjelma, jolla pystyy pelaamaan shakkia tekoälyä vastaan. Liittyy Helsingin yliopiston kurssiin "Aineopintojen harjoitystyö: Tietorakenteet ja algoritmit".
 
+## Ohjelman sijainti
+
+Ohjelmaa voi testata osoitteessa https://sendouc.github.io/tshakki-ai/
+
 ## Algoritmi
 
 Kaikki tekoälyyn ja algoritmeihin liittyvä koodi on kansiossa [logiikka](https://github.com/Sendouc/tshakki-ai/tree/master/src/logiikka).
@@ -23,6 +27,7 @@ Kaikki tekoälyyn ja algoritmeihin liittyvä koodi on kansiossa [logiikka](https
 [Viikko 3](https://github.com/Sendouc/tshakki-ai/blob/master/dokumentaatio/viikkoraportti_3.md)  
 [Viikko 4](https://github.com/Sendouc/tshakki-ai/blob/master/dokumentaatio/viikkoraportti_4.md)  
 [Viikko 5](https://github.com/Sendouc/tshakki-ai/blob/master/dokumentaatio/viikkoraportti_5.md)
+[Viikko 6](https://github.com/Sendouc/tshakki-ai/blob/master/dokumentaatio/viikkoraportti_6.md)
 
 ## Yksikkötestaus
 
